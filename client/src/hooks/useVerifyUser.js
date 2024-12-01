@@ -15,7 +15,6 @@ const useVerifyUser = () => {
             if(!res.data.success){
                 navigate('/')
             }
-            navigate('/home/dashboard')
         } catch (error) {
             console.log(error)
         }

@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
 const corsConfiguration = {
-    origin: "https://khatabill.netlify.app" || "http://localhost:5173" ,
+    origin: "https://khatabill.netlify.app",
     credentials:true
 }
 app.use(cors(corsConfiguration))
