@@ -5,8 +5,7 @@ const billSlice = createSlice({
     initialState: {
         billbooks : [],
         bills: [],
-        transactions: [],
-        isUserLoggedIn: false
+        transactions: []
     },
     reducers: {
         getbillbooks: (state, action) => {
@@ -17,12 +16,9 @@ const billSlice = createSlice({
         },
         gettransactions: (state, action) => {
             state.transactions = action.payload
-        },
-        setIsUserLoggedIn: (state, action) => {
-            state.isUserLoggedIn = action.payload
         }
     }
 })
 
-export const {getbillbooks, getbills, gettransactions, setIsUserLoggedIn} = billSlice.actions;
+export const {getbillbooks, getbills, gettransactions} = billSlice.actions;
 export default billSlice.reducer;

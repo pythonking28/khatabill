@@ -10,7 +10,6 @@ import AddBillBook from './components/bill/AddBillBook.jsx';
 import AddBill from './components/bill/AddBill.jsx';
 import AddTransaction from './components/bill/AddTransaction.jsx';
 import TotalBills from './components/bill/TotalBills.jsx';
-import { useSelector } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -58,12 +57,6 @@ const router = createBrowserRouter([
 ])
 
 function App() {
-  
-  const navigate = useNavigate()
-  const {isUserLoggedIn} = useSelector(store => store.bill)
-  if(isUserLoggedIn){
-    navigate("/home/dashboard")
-  }
 
   return (
     <>
