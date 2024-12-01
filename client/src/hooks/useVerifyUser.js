@@ -11,9 +11,11 @@ const useVerifyUser = () => {
             const res = await axios.get(`${backendRoot}/api/v1/user/verifyuser`,{
                 withCredentials: true
               })
+              console.log(res)
             if(!res.data.success){
                 navigate('/')
             }
+            navigate('/home/dashboard')
         } catch (error) {
             console.log(error)
         }
