@@ -44,7 +44,10 @@ const Login = () => {
         toast.error("Failed To Login.")
       }
       toast.success(`Logged In successfully!!!`)
-      navigate("/home/dashboard")
+      setTimeout(() => {
+        navigate("/home/dashboard")
+      },2000)
+      
       } catch (error) {
         console.log(error)
       }
