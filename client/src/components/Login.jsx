@@ -40,13 +40,13 @@ const Login = () => {
       },{
         withCredentials: true
       })
-      if(!res.data.success){
-        toast.error("Failed To Login.")
-      }
-      toast.success(`Logged In successfully!!!`)
-      setTimeout(() => {
+      if(res.data.success){
+
+        toast.success(`Logged In successfully!!!`)
         navigate("/home/dashboard")
-      },2000)
+      }
+      
+      toast.error("Failed To Login.")
       
       } catch (error) {
         console.log(error)
