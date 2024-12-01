@@ -1,4 +1,4 @@
-import {createBrowserRouter, Route, RouterProvider} from 'react-router-dom'
+import {createBrowserRouter, Route, RouterProvider, useNavigate} from 'react-router-dom'
 import { Toaster } from 'react-hot-toast';
 import Login from './components/Login.jsx'
 import Dashboard from './components/Dashboard.jsx'
@@ -10,6 +10,7 @@ import AddBillBook from './components/bill/AddBillBook.jsx';
 import AddBill from './components/bill/AddBill.jsx';
 import AddTransaction from './components/bill/AddTransaction.jsx';
 import TotalBills from './components/bill/TotalBills.jsx';
+import { useSelector } from 'react-redux';
 
 const router = createBrowserRouter([
   {
@@ -58,7 +59,11 @@ const router = createBrowserRouter([
 
 function App() {
   
-
+  const navigate = useNavigate()
+  const {isUserLoggedIn} = useSelector(store => store.bill)
+  i(isUserLoggedIn){
+    navigate("/home/dashboard")
+  }
 
   return (
     <>
