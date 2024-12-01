@@ -61,7 +61,7 @@ function App() {
   
   const navigate = useNavigate()
   const {isUserLoggedIn} = useSelector(store => store.bill)
-  i(isUserLoggedIn){
+  if(isUserLoggedIn){
     navigate("/home/dashboard")
   }
 
