@@ -42,10 +42,16 @@ const SummaryCards = () => {
         {/* Completed Transactions Card */}
         <div className="bg-gradient-to-r from-purple-600 to-purple-800 text-white p-6 rounded-lg shadow-lg hover:scale-105 transform transition duration-300">
           <h3 className="text-xl font-semibold">Completed Transactions</h3>
-          <p className="text-4xl font-bold mt-2">25</p>
+          <p className="text-4xl font-bold mt-2">{bills.filter(bill=>!bill.pending).length}</p>
           <p className="mt-2 opacity-75">Completed and settled bills.</p>
         </div>
 
+        {/* Total amoount Card */}
+        <div className="bg-gradient-to-r from-teal-500 to-teal-700 text-white p-6 rounded-lg shadow-lg hover:scale-105 transform transition duration-300">
+          <h3 className="text-xl font-semibold">Total Sales</h3>
+          <p className="text-4xl font-bold mt-2">₹{transactions.reduce((acc,item)=> acc+parseFloat(item.original_amount), 0)}</p>
+          <p className="mt-2 opacity-75">Total revenue generated from bills.</p>
+        </div>
         {/* Total Revenue Card */}
         <div className="bg-gradient-to-r from-teal-500 to-teal-700 text-white p-6 rounded-lg shadow-lg hover:scale-105 transform transition duration-300">
           <h3 className="text-xl font-semibold">Total Revenue</h3>
@@ -62,7 +68,7 @@ const SummaryCards = () => {
         {/* Orders Pending Card */}
         <div className="bg-gradient-to-r from-red-600 to-red-800 text-white p-6 rounded-lg shadow-lg hover:scale-105 transform transition duration-300">
           <h3 className="text-xl font-semibold">Orders Pending</h3>
-          <p className="text-4xl font-bold mt-2">5</p>
+          <p className="text-4xl font-bold mt-2">{bills.filter(bill=> bill.status === "order").length}</p>
           <p className="mt-2 opacity-75">Orders that need to be completed.</p>
         </div>
       </div>
