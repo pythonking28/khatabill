@@ -83,6 +83,7 @@ export const signInuser = async (req, res) => {
       .cookie("token", token, {
         httpOnly: true,
         secure: true,
+        sameSite: "None", 
       })
       .json({
         message: `User ${user.rows[0].username} loggedIn successfully`,

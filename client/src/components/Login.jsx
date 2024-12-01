@@ -44,9 +44,11 @@ const Login = () => {
 
         toast.success(`Logged In successfully!!!`)
         navigate("/home/dashboard")
+      }else{
+
+        toast.error("Failed To Login.")
       }
       
-      toast.error("Failed To Login.")
       
       } catch (error) {
         console.log(error)
