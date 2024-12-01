@@ -23,7 +23,6 @@ const Login = () => {
       const res = await axios.post(`${backendRoot}/api/v1/user/register`,{
         username, email, password
       })
-      console.log(res.response)
       if(!res.data.success){
         toast.error("Failed To Create User.")
       }
