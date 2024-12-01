@@ -3,7 +3,6 @@ import { Line, Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend, BarElement } from 'chart.js';
 import { useSelector } from 'react-redux';
 
-// Registering the required Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -16,7 +15,7 @@ ChartJS.register(
 );
 
 const Graph = () => {
-  // Get data from the Redux store
+
   const { bills, transactions } = useSelector(store => store.bill);
 
   // Initialize arrays for storing monthly data
@@ -28,35 +27,30 @@ const Graph = () => {
   let totalRevenue = 0;
   let totalPendingRevenue = 0;
 
-  // Store the payment status of bills based on transactions
   const billPayments = {};
 
-  // Process transactions and update bill payments
   transactions.forEach((transaction) => {
     const billId = transaction.bill_id;
     const paymentAmount = parseFloat(transaction.amount_paid);
 
     if (!billPayments[billId]) {
-      billPayments[billId] = 0; // Initialize payment for the bill
+      billPayments[billId] = 0; 
     }
 
     billPayments[billId] += paymentAmount;
   });
 
-  // Loop over the bills to calculate revenue, payments, and bill status per month
   bills.forEach((bill) => {
     const billAmount = parseFloat(bill.original_amount);
     const dueAmount = parseFloat(bill.due_amount);
     const billId = bill.bill_id;
     const month = new Date(bill.created_at).getMonth();
 
-    revenuePerMonth[month] += billAmount; // Total revenue (total amount of the bill)
-    paymentReceivedPerMonth[month] += (billAmount - dueAmount); // Payment received (total amount - due amount)
+    revenuePerMonth[month] += billAmount;
+    paymentReceivedPerMonth[month] += (billAmount - dueAmount); 
 
-    // Calculate payment status based on transaction data
     const amountPaid = billPayments[billId] || 0;
 
-    // Bill payment status handling
     if (bill.pending === false) {
       paidBillsPerMonth[month] += 1;
     } else {
@@ -67,7 +61,6 @@ const Graph = () => {
     totalPendingRevenue += dueAmount;
   });
 
-  // Bill Status Trend (Bar Graph)
   const billStatusTrendData = {
     labels: ['Baisakh', 'Jestha', 'Ashadh', 'Shrawan', 'Bhadra', 'Ashwin', 'Kartik', 'Mangsir', 'Poush', 'Magh', 'Falgun', 'Chaitra'],
     datasets: [
@@ -88,7 +81,6 @@ const Graph = () => {
     ],
   };
 
-  // Monthly Revenue Trend (Line Chart)
   const lineChartData = {
     labels: ['Baisakh', 'Jestha', 'Ashadh', 'Shrawan', 'Bhadra', 'Ashwin', 'Kartik', 'Mangsir', 'Poush', 'Magh', 'Falgun', 'Chaitra'],
     datasets: [

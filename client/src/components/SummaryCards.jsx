@@ -49,7 +49,7 @@ const SummaryCards = () => {
         {/* Total amoount Card */}
         <div className="bg-gradient-to-r from-teal-500 to-teal-700 text-white p-6 rounded-lg shadow-lg hover:scale-105 transform transition duration-300">
           <h3 className="text-xl font-semibold">Total Sales</h3>
-          <p className="text-4xl font-bold mt-2">₹{transactions.reduce((acc,item)=> acc+parseFloat(item.original_amount), 0)}</p>
+          <p className="text-4xl font-bold mt-2">₹{bills.reduce((acc,item)=> acc+parseFloat(item.original_amount), 0)}</p>
           <p className="mt-2 opacity-75">Total revenue generated from bills.</p>
         </div>
         {/* Total Revenue Card */}

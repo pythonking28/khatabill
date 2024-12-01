@@ -9,7 +9,6 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
-  // Helper function to add underline to active link
   const isActive = (path) => location.pathname === path ? "border-b-2 border-yellow-300" : "";
   return (
     <header className="bg-gradient-to-r from-[#f06a6a] to-[#c9426b] text-white font-bold tracking-widest text-lg">
