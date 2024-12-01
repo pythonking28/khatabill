@@ -8,7 +8,7 @@ const useGetMyBills = () => {
   useEffect(()=>{
     const fetchBills = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/v1/bill/getallbill",{
+            const res = await axios.get(`${backendRoot}/api/v1/bill/getallbill`,{
                 withCredentials: true
             })
             dispatch(getbills(res.data.bills))

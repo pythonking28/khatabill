@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import axios from 'axios';
 import toast from "react-hot-toast";
+import { backendRoot } from "./constants";
 
 const Login = () => {
   const [register, setRegister] = useState(true);
@@ -19,7 +20,7 @@ const Login = () => {
           toast.error("Password mismatch detected");
           return;
         };
-      const res = await axios.post("http://localhost:8000/api/v1/user/register",{
+      const res = await axios.post(`${backendRoot}/api/v1/user/register`,{
         username, email, password
       })
       console.log(res.response)
@@ -34,7 +35,7 @@ const Login = () => {
       }
     }else{
       try {
-      const res = await axios.post("http://localhost:8000/api/v1/user/login",{
+      const res = await axios.post(`${backendRoot}/api/v1/user/login`,{
         email, password
       },{
         withCredentials: true

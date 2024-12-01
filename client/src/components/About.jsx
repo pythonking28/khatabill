@@ -15,7 +15,6 @@ const About = () => {
           </p>
         </div>
 
-        {/* Developer Image with Enhanced Border */}
         <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full bg-gradient-to-r from-indigo-400 to-purple-600 p-1">
           <div className="w-full h-full rounded-full overflow-hidden shadow-lg transform transition-transform duration-300 hover:scale-105">
             <img

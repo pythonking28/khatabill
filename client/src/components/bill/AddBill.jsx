@@ -4,6 +4,7 @@ import NepaliDate from "nepali-date";
 import toast from "react-hot-toast";
 import { NepaliDatePicker } from "nepali-datepicker-reactjs";
 import "nepali-datepicker-reactjs/dist/index.css";
+import { backendRoot } from "../constants";
 
 const AddBill = () => {
   const currentDate = new NepaliDate();
@@ -25,7 +26,7 @@ const AddBill = () => {
     const fetchBillbooks = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:8000/api/v1/billbook/getallbillbook",
+          `${backendRoot}/api/v1/billbook/getallbillbook`,
           {
             withCredentials: true,
           }
@@ -79,7 +80,7 @@ const AddBill = () => {
 
     try {
       const res = await axios.post(
-        "http://localhost:8000/api/v1/bill/createbill",
+        `${backendRoot}/api/v1/bill/createbill`,
         {
           billbookId: parseInt(billbookId),
           customerName,
@@ -99,7 +100,7 @@ const AddBill = () => {
       }
 
       if(res.data.success){
-        const transactionData = await axios.post("http://localhost:8000/api/v1/transaction/createtransaction",{billId: parseInt(res?.data.data), amountPaid: parseInt(paidAmount)},{
+        const transactionData = await axios.post(`${backendRoot}/api/v1/transaction/createtransaction`,{billId: parseInt(res?.data.data), amountPaid: parseInt(paidAmount)},{
           withCredentials: true
         })
         if(!transactionData?.data.success){

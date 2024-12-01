@@ -62,11 +62,3 @@ CREATE TABLE Transactions (
    notes TEXT
 );
 
-
-CREATE TABLE VerificationTokens (
-   token_id SERIAL PRIMARY KEY,
-   user_id INT REFERENCES Users(user_id),
-   verification_token VARCHAR(255) UNIQUE NOT NULL,
-   created_at TIMESTAMP DEFAULT NOW(),
-   expires_at TIMESTAMP NOT NULL
-);

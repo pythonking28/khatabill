@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { NepaliDatePicker } from "nepali-datepicker-reactjs";
 import "nepali-datepicker-reactjs/dist/index.css";
 import { useSelector } from "react-redux";
+import { backendRoot } from "../constants";
 
 const AddTransaction = () => {
   const { billbooks: billbookOptions, bills } = useSelector(
@@ -12,7 +13,6 @@ const AddTransaction = () => {
   );
   const currentDate = new NepaliDate();
 
-  // States for fields
   const [billbookName, setBillbookName] = useState("");
   const [billNumber, setBillNumber] = useState("");
   const [paidAmount, setPaidAmount] = useState("");
@@ -57,7 +57,7 @@ const AddTransaction = () => {
 
     try {
       const transactionData = await axios.post(
-        "http://localhost:8000/api/v1/transaction/createtransaction",
+        `${backendRoot}/api/v1/transaction/createtransaction`,
         {
           billId: parseInt(billNumber),
           billbookId: parseInt(billbookId),
@@ -74,7 +74,7 @@ const AddTransaction = () => {
       }
       toast.success("Transaction added successfully!");
       const billUpdate = await axios.put(
-        "http://localhost:8000/api/v1/bill/updateBill",
+        `${backendRoot}/api/v1/bill/updateBill`,
         {
           billId: parseInt(billData.bill_id),
           billbookId: parseInt(billData.billbook_id),

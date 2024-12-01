@@ -10,6 +10,7 @@ import {
 } from "react-icons/fa";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { backendRoot } from "../constants";
 
 const TotalBills = () => {
   const { bills, billbooks } = useSelector((store) => store.bill);
@@ -57,7 +58,7 @@ const TotalBills = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await axios.put('http://localhost:8000/api/v1/bill//updatebill',{
+      const res = await axios.put(`${backendRoot}/api/v1/bill//updatebill`,{
         billId: editBillId,
         originalAmount: parseFloat(editFields.original_amount),
         dueAmount : parseFloat(editFields.original_amount) - parseFloat(editFields.paid_amount),
@@ -75,7 +76,7 @@ const TotalBills = () => {
 
   const handleDelete = async (billId) => {
     try {
-      const res = await axios.delete(`http://localhost:8000/api/v1/bill//deletebill/${billId}`,{
+      const res = await axios.delete(`${backendRoot}/api/v1/bill//deletebill/${billId}`,{
         withCredentials: true
       })
       navigate("/home/dashboard")

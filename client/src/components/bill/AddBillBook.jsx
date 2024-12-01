@@ -4,6 +4,7 @@ import NepaliDate from "nepali-date";
 import toast from "react-hot-toast";
 import { NepaliDatePicker } from "nepali-datepicker-reactjs";
 import "nepali-datepicker-reactjs/dist/index.css";
+import { backendRoot } from "../constants";
 
 const AddBillBook = () => {
   const currentDate = new NepaliDate()
@@ -46,7 +47,7 @@ const AddBillBook = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post("http://localhost:8000/api/v1/billbook/create", {
+      const res = await axios.post(`${backendRoot}/api/v1/billbook/create`, {
         title,
         totalPages: parseInt(totalPages, 10),
         date,
