@@ -51,6 +51,20 @@ CREATE TABLE Bills (
     created_at VARCHAR(20) DEFAULT NOW()
 );
 
+CREATE TABLE Bills (
+    bill_id SERIAL PRIMARY KEY,
+    billbook_id INT REFERENCES Billbooks(billbook_id) ON DELETE CASCADE,
+    user_id INT REFERENCES Users(user_id) ON DELETE CASCADE, 
+    bill_number VARCHAR(50) NOT NULL,
+    original_amount DECIMAL(10,2) NOT NULL,
+    due_amount DECIMAL(10,2) DEFAULT 0,
+    status Status DEFAULT 'purchased', 
+    discount DECIMAL(10,2) DEFAULT 0,
+    pending BOOLEAN DEFAULT TRUE,
+    created_at VARCHAR(20) DEFAULT NOW()
+    customer_name VARCHAR(255) NOT NULL, 
+);
+
 
 CREATE TABLE Transactions (
    transaction_id SERIAL PRIMARY KEY,
@@ -62,3 +76,11 @@ CREATE TABLE Transactions (
    notes TEXT
 );
 
+
+CREATE TABLE VerificationTokens (
+   token_id SERIAL PRIMARY KEY,
+   user_id INT REFERENCES Users(user_id),
+   verification_token VARCHAR(255) UNIQUE NOT NULL,
+   created_at TIMESTAMP DEFAULT NOW(),
+   expires_at TIMESTAMP NOT NULL
+);

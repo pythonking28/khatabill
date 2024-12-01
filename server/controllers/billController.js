@@ -19,7 +19,8 @@ export const createBill = async (req, res) => {
                 success: false
             })
         }
-        const data = await pool.query('INSERT INTO Bills (billbook_id, customer_name,user_id, bill_number,original_amount,due_amount, status,pending, discount, created_at) VALUES ($1,$2,$3, $4, $5, $6, $7,$8,$9,$10) RETURNING *',[billbookId, customerName,userId, billNumber, totalAmount, dueAmount, status[0],isPending, discount, date])
+        console.log()
+        const data = await pool.query('INSERT INTO Bills (billbook_id, customer_name,user_id, bill_number,original_amount,due_amount, status,pending, discount, created_at) VALUES ($1,$2,$3, $4, $5, $6, $7,$8,$9,$10) RETURNING *',[billbookId, customerName,userId, billNumber, totalAmount, dueAmount, status,isPending, discount, date])
         if(data.rows.legth == 0){
             return res.status(500).json({
                 message: "Failed to create Bill",
@@ -126,7 +127,6 @@ export const deleteBill = async (req, res) => {
 export const updateBill = async (req, res) => {
     const {billId,originalAmount, dueAmount,customerName} = req.body;
     const userId = req.userId;
-    console.log(billId, originalAmount, dueAmount, customerName)
     try {
         const bill = await pool.query('SELECT * FROM Bills WHERE bill_id = $1 AND user_id = $2', [billId, userId]);
         if(!bill.rows.length){
